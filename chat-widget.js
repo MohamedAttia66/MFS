@@ -35,9 +35,6 @@
             transition: transform .2s; transform-origin: bottom center; }\
   .bubble:hover { transform: translateY(-3px) scale(1.04); }\
   .bubble img { width: 100%; height: 100%; display: block; }\
-  .bubble.wave img { animation: wave 1.6s ease-in-out 2; transform-origin: 50% 90%; }\
-  @keyframes wave { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(4deg); } }\
-  @media (prefers-reduced-motion: reduce) { .bubble.wave img { animation: none; } }\
   .dot { display: none; }\
   .hint { position: fixed; right: 138px; bottom: calc(34px + env(safe-area-inset-bottom, 0px)); z-index: 2147483000;\
           background: #12355b; color: #fff; border-radius: 22px; padding: 14px 44px 14px 16px; min-width: 250px;\
@@ -101,7 +98,7 @@
   var hint = root.querySelector('.hint');
   var dismissed = false; try { dismissed = sessionStorage.getItem('tm_chat_hint') === 'off'; } catch (e) {}
   var bubbleEl = root.querySelector('.bubble');
-  setTimeout(function () { if (!panel.classList.contains('open') && !dismissed) { hint.hidden = false; bubbleEl.classList.add('wave'); } }, 2000);
+  setTimeout(function () { if (!panel.classList.contains('open') && !dismissed) { hint.hidden = false;  } }, 2000);
   hint.addEventListener('click', function (e) {
     if (e.target.closest('.hx')) { hint.hidden = true; dismissed = true; try { sessionStorage.setItem('tm_chat_hint', 'off'); } catch (x) {} return; }
     open();
